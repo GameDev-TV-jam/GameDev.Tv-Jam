@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
     IEnumerator TakeDamage()
     {
         isTakingDamage = true;
-        GetComponent<Rigidbody2D>().velocity = Knockback;
+        GetComponent<Rigidbody2D>().velocity += Knockback;
         health -= 1;
         yield return new WaitForSeconds(.5f);
         isTakingDamage = false;
