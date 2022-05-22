@@ -11,7 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField] float runSpeed = 5.2f; //default run speed
     [SerializeField] float jumpSpeed = 8.5f; // default jump speed/height
     [SerializeField] float deathFall = -40f; // how far the player falls below 0 on y-axis before dying
-    
+    [SerializeField] Vector2 Knockback = new Vector2(3f, 3f);
+
     Rigidbody2D myRigidBody; //the player character's physical frame
     Animator myAnimator; //the animation component
     CapsuleCollider2D myBodyCollider; //handles collision for the main part of the player character
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
 
     public float health = 3;
     bool isAlive = true;
+    bool isTakingDamage = false;
 
 
     void Start()
@@ -74,10 +76,19 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") && isTakingDamage == false)
         {
-            health -= 1;
+            StartCoroutine(TakeDamage());
         }
+    }
+
+    IEnumerator TakeDamage()
+    {
+        isTakingDamage = true;
+        GetComponent<Rigidbody2D>().velocity = Knockback;
+        health -= 1;
+        yield return new WaitForSeconds(.5f);
+        isTakingDamage = false;
     }
 
 
