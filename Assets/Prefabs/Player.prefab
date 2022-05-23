@@ -488,7 +488,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 8592051434956359842, guid: b0b89edee1a3d394285356ae221f3165, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -515,7 +515,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 6200000, guid: df166a933a1cbc84a84d8a6c15cd480a, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -528,7 +528,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4177286982434033082}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -597,7 +597,7 @@ MonoBehaviour:
     m_Bits: 64
   baseSpeed: 5
   moveSpeed: 5
-  playerJumpForce: 6.5
+  playerJumpForce: 15
   extraJumps: 1
   GlideForce: 0
   StartGlideTime: 0
