@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerMovement : MonoBehaviour
@@ -109,6 +111,28 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float dashTime = 0.5f;
 
+    [Header("Health and Special and Death")]
+
+    [SerializeField] private Slider healthBar;
+    [SerializeField] private Image healthFill;
+
+    [SerializeField] float deathFall = -40f; // how far the player falls below 0 on y-axis before dying
+    [SerializeField] GameObject fireBall;
+    [SerializeField] Vector2 fireBallVelocity = new Vector2(1.5f, 0f);
+
+    CapsuleCollider2D myBodyCollider; //handles collision for the main part of the player character
+    BoxCollider2D myFeet; //handles collision (and therefore jumping and enemy kills) for the player character's feet.
+
+    public float maxHealth = 3;
+    public float health = 3;
+    bool isAlive = true;
+    bool isTakingDamage = false;
+    bool isKnockedBack = false;
+
+    Vector2 fireBallSpawnPoint;
+    Vector2 Knockback;
+
+
     #endregion
 
     #region In-Built Functions
@@ -119,13 +143,29 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawWireSphere(wallCheck.position, wallCheckRadius);
     }
 
+    private void Awake()
+    {
+        health = maxHealth;
+        healthBar.maxValue = maxHealth;
+        healthBar.value = maxHealth;
+    }
+
     void Start()
     {
         moveSpeed = baseSpeed;
+        myBodyCollider = GetComponent<CapsuleCollider2D>();
+        myFeet = GetComponent<BoxCollider2D>();
+        
+
     }
 
     private void Update()
     {
+        if (!isAlive)
+        {
+            return;
+        }
+
         if (isGrounded == true)
         {
             glideCheck = true;
@@ -151,6 +191,9 @@ public class PlayerMovement : MonoBehaviour
         {
             DashMechanism();
         }
+
+        Die();
+        ShootFireball();
     }
 
     private void FixedUpdate()
@@ -171,9 +214,61 @@ public class PlayerMovement : MonoBehaviour
 
     #region Movement Mechanics
 
+    private void ShootFireball()
+    {
+        if (CrossPlatformInputManager.GetButtonDown("Fire1"))
+        {
+            fireBallSpawnPoint = new Vector2(gameObject.transform.GetChild(0).transform.position.x, gameObject.transform.GetChild(0).transform.position.y);
+            GameObject fireBallInstance = Instantiate(fireBall, fireBallSpawnPoint, Quaternion.identity);
+            fireBallInstance.GetComponent<Rigidbody2D>().velocity = fireBallVelocity;
+        }
+    }
+
+    private void Die()
+    {
+
+        if (playerRigidBody.transform.position.y < deathFall || health <= 0)
+        {
+            isAlive = false;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //myAnimator.SetTrigger("Dying");
+            //ResetHealth();
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy") && isTakingDamage == false)
+        {
+            if(other.gameObject.transform.position.x > this.transform.position.x)
+            {
+                Knockback = new Vector2(-5f, 3f);
+            }
+
+            if (other.gameObject.transform.position.x < this.transform.position.x)
+            {
+                Knockback = new Vector2(5f, 3f);
+            }
+
+            StartCoroutine(TakeDamage());
+        }
+    }
+
+    IEnumerator TakeDamage()
+    {
+        isTakingDamage = true;
+        isKnockedBack = true;
+        playerRigidBody.velocity = Knockback;
+        health -= 1;
+        healthBar.value = health;
+        yield return new WaitForSeconds(.3f);
+        isKnockedBack = false;
+        isTakingDamage = false;
+    }
+
     void PlayerMove()
     {
-        if(!isDashing)
+        if(!isDashing && !isKnockedBack)
         {
             moveInput = Input.GetAxis("Horizontal");
             playerRigidBody.velocity = new Vector2(moveInput * moveSpeed, playerRigidBody.velocity.y);

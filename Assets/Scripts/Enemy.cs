@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
 
     float xStartPos;
     float currentPos;
+    BoxCollider2D playerFeet;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,8 @@ public class Enemy : MonoBehaviour
         myRigidBody = GetComponent<Rigidbody2D>();
         damageCollider = GetComponent<PolygonCollider2D>();
         bodyCollider = GetComponent<CapsuleCollider2D>();
+
+        playerFeet = GameObject.Find("Player").GetComponent<BoxCollider2D>();
 
         xStartPos = transform.position.x;
     }
@@ -39,7 +42,12 @@ public class Enemy : MonoBehaviour
         }
 
         Move();
-        Die();
+
+        if (playerFeet.IsTouching(damageCollider))
+        {
+            Die();
+        }
+        
     }
 
     void Move()
@@ -56,11 +64,16 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        BoxCollider2D playerFeet = GameObject.Find("Player").GetComponent<BoxCollider2D>();
-        if (playerFeet.IsTouching(damageCollider))
+        isAlive = false;
+        Destroy(gameObject);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Fireball"))
         {
-            isAlive = false;
-            Destroy(gameObject);
+            Die();
+            Destroy(other.gameObject);
         }
     }
 }
