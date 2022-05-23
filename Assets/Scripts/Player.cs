@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField] float jumpSpeed = 8.5f; // default jump speed/height
     [SerializeField] float deathFall = -40f; // how far the player falls below 0 on y-axis before dying
     [SerializeField] Vector2 Knockback = new Vector2(3f, 3f);
+    [SerializeField] GameObject fireBall;
+    [SerializeField] Vector2 fireBallVelocity = new Vector2(1.5f, 0f);
 
     Rigidbody2D myRigidBody; //the player character's physical frame
     Animator myAnimator; //the animation component
@@ -22,6 +24,8 @@ public class Player : MonoBehaviour
     public float health = 3;
     bool isAlive = true;
     bool isTakingDamage = false;
+
+    Vector2 fireBallSpawnPoint;
 
 
     void Start()
@@ -43,6 +47,17 @@ public class Player : MonoBehaviour
         Run();
         Jump();
         Die();
+        ShootFireball();
+    }
+
+    private void ShootFireball()
+    {
+        if(CrossPlatformInputManager.GetButtonDown("Fire1"))
+        {
+            fireBallSpawnPoint = new Vector2(gameObject.transform.GetChild(0).transform.position.x, gameObject.transform.GetChild(0).transform.position.y);
+            GameObject fireBallInstance = Instantiate(fireBall, fireBallSpawnPoint, Quaternion.identity);
+            fireBallInstance.GetComponent<Rigidbody2D>().velocity = fireBallVelocity;
+        }
     }
 
     private void Run()
