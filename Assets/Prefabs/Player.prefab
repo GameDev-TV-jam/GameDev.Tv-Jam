@@ -148,7 +148,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.12540674, y: -0.39602983}
@@ -192,28 +192,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da92bd9c4c4ed174cb00d642667573d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRigidBody: {fileID: 0}
-  canWalk: 0
-  canJump: 0
+  playerRigidBody: {fileID: 5991726825248687797}
+  canWalk: 1
+  canJump: 1
   canGlide: 0
   canWallJump: 0
-  canDash: 0
-  JumpKey: 0
+  canDash: 1
+  JumpKey: 32
   GlideKey: 0
   DashKey: 0
-  groundCheck: {fileID: 0}
-  groundCheckRadius: 0
+  groundCheck: {fileID: 5991726825248687798}
+  groundCheckRadius: 0.6
   WhatIsGround:
     serializedVersion: 2
-    m_Bits: 0
-  wallCheck: {fileID: 0}
-  wallCheckRadius: 0
+    m_Bits: 8
+  wallCheck: {fileID: 5991726825248687798}
+  wallCheckRadius: 0.6
   WhatIsWall:
     serializedVersion: 2
-    m_Bits: 0
-  baseSpeed: 0
-  moveSpeed: 0
-  playerJumpForce: 0
+    m_Bits: 64
+  baseSpeed: 5
+  moveSpeed: 5
+  playerJumpForce: 10
   extraJumps: 0
   GlideForce: 0
   StartGlideTime: 0
