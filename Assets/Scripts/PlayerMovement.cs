@@ -61,6 +61,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     KeyCode DashKey;
 
+    public Animator animator;
+
     [Header("Ground Check Components Settings")]
 
     [SerializeField]
@@ -271,6 +273,7 @@ public class PlayerMovement : MonoBehaviour
         if(!isDashing && !isKnockedBack)
         {
             moveInput = Input.GetAxis("Horizontal");
+            animator.SetFloat("Speed", Mathf.Abs(moveInput));
             playerRigidBody.velocity = new Vector2(moveInput * moveSpeed, playerRigidBody.velocity.y);
 
             if (facingRight == false && moveInput > 0)
