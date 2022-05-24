@@ -88,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject fireBall;
     [SerializeField] Vector2 fireBallVelocity = new Vector2(1.5f, 0f);
     [SerializeField] Text currentAbilityText;
+    [SerializeField] Text CollectiblesCollectedText;
 
 
     public float maxHealth = 3;
@@ -100,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
     bool DashSpecial = false;
 
     int SpecialNum;
+    int CollectiblesCount = 0;
 
     float lastXPosition;
     float lastYPosition;
@@ -128,9 +130,11 @@ public class PlayerMovement : MonoBehaviour
     {
         moveSpeed = baseSpeed;
 
-        if (PlayerPrefs.HasKey("PositionX"))
+        if (PlayerPrefs.HasKey("PositionX") || PlayerPrefs.HasKey("Collected"))
         {
             gameObject.transform.position = new Vector2(PlayerPrefs.GetFloat("PositionX"), PlayerPrefs.GetFloat("PositionY"));
+            CollectiblesCount = PlayerPrefs.GetInt("Collected");
+            CollectiblesCollectedText.text = CollectiblesCount.ToString();
         }
 
         lastXPosition = gameObject.transform.position.x;
@@ -295,6 +299,14 @@ public class PlayerMovement : MonoBehaviour
             }
 
             StartCoroutine(TakeDamage());
+        }
+
+        if(other.CompareTag("Collectibles"))
+        {
+            CollectiblesCount += 1;
+            CollectiblesCollectedText.text = CollectiblesCount.ToString();
+            PlayerPrefs.SetInt("Collected", CollectiblesCount);
+            Destroy(other.gameObject);
         }
     }
 
