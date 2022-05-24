@@ -2027,7 +2027,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: df166a933a1cbc84a84d8a6c15cd480a, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &1028240786023205929
 BoxCollider2D:
