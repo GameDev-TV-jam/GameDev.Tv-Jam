@@ -15,8 +15,6 @@ public class PlayerMovement : MonoBehaviour
     float glideCurrentTimer;
     float glideDirection;
 
-    Vector2 dashingDir;
-
     bool facingRight = true;
     bool isGrounded;
     bool isWalled;
@@ -122,8 +120,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject fireBall;
     [SerializeField] Vector2 fireBallVelocity = new Vector2(1.5f, 0f);
 
-    CapsuleCollider2D myBodyCollider; //handles collision for the main part of the player character
-    BoxCollider2D myFeet; //handles collision (and therefore jumping and enemy kills) for the player character's feet.
 
     public float maxHealth = 3;
     public float health = 3;
@@ -155,10 +151,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         moveSpeed = baseSpeed;
-        myBodyCollider = GetComponent<CapsuleCollider2D>();
-        myFeet = GetComponent<BoxCollider2D>();
-        
-
     }
 
     private void Update()
@@ -222,7 +214,17 @@ public class PlayerMovement : MonoBehaviour
         {
             fireBallSpawnPoint = new Vector2(gameObject.transform.GetChild(0).transform.position.x, gameObject.transform.GetChild(0).transform.position.y);
             GameObject fireBallInstance = Instantiate(fireBall, fireBallSpawnPoint, Quaternion.identity);
-            fireBallInstance.GetComponent<Rigidbody2D>().velocity = fireBallVelocity;
+
+            if(facingRight)
+            {
+                fireBallInstance.GetComponent<Rigidbody2D>().velocity = fireBallVelocity;
+            }
+
+            if(!facingRight)
+            {
+                fireBallInstance.GetComponent<Rigidbody2D>().velocity = fireBallVelocity * -1;
+            }
+            
         }
     }
 

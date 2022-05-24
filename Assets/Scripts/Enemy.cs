@@ -6,22 +6,15 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 1f;
     Rigidbody2D myRigidBody;
-    PolygonCollider2D damageCollider;
-    CapsuleCollider2D bodyCollider;
     bool isAlive = true;
 
     float xStartPos;
     float currentPos;
-    BoxCollider2D playerFeet;
 
     // Start is called before the first frame update
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
-        damageCollider = GetComponent<PolygonCollider2D>();
-        bodyCollider = GetComponent<CapsuleCollider2D>();
-
-        playerFeet = GameObject.Find("Player").GetComponent<BoxCollider2D>();
 
         xStartPos = transform.position.x;
     }
@@ -42,11 +35,6 @@ public class Enemy : MonoBehaviour
         }
 
         Move();
-
-        if (playerFeet.IsTouching(damageCollider))
-        {
-            Die();
-        }
         
     }
 
@@ -62,18 +50,13 @@ public class Enemy : MonoBehaviour
     }
 
 
-    private void Die()
-    {
-        isAlive = false;
-        Destroy(gameObject);
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Fireball"))
         {
-            Die();
+            isAlive = false;
             Destroy(other.gameObject);
+            Destroy(gameObject);
         }
     }
 }
