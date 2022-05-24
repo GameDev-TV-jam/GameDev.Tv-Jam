@@ -244,6 +244,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerPrefs.SetFloat("PositionX", lastXPosition);
         PlayerPrefs.SetFloat("PositionY", lastYPosition);
         PlayerPrefs.SetInt("CurrentLevel", SceneManager.GetActiveScene().buildIndex);
+        PlayerPrefs.SetInt("Collected", CollectiblesCount);
     }
 
     private void ShootFireball()
@@ -307,6 +308,12 @@ public class PlayerMovement : MonoBehaviour
             CollectiblesCollectedText.text = CollectiblesCount.ToString();
             PlayerPrefs.SetInt("Collected", CollectiblesCount);
             Destroy(other.gameObject);
+        }
+
+        if(other.CompareTag("Exit"))
+        {
+            PlayerPrefs.DeleteAll();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 

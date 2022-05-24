@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Fireball
   - Collectibles
+  - Exit
   layers:
   - Default
   - TransparentFX
