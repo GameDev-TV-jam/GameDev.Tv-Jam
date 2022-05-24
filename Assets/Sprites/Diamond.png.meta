@@ -1,40 +1,37 @@
 fileFormatVersion: 2
-guid: 71a90d644cbd9ee47ab3b3585131c1bf
+guid: de3e3297a3399294f803b789451e895c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 468701609226855392
-    second: Placeholder ( Player )_0
+      213: -4658123360840285283
+    second: Big Diamond Idle (18x14)_0
   - first:
-      213: -5307043995405734638
-    second: Placeholder ( Player )_1
+      213: -9132469165398134140
+    second: Big Diamond Idle (18x14)_1
   - first:
-      213: 6893445772051701952
-    second: Placeholder ( Player )_2
+      213: -317340658027101851
+    second: Big Diamond Idle (18x14)_2
   - first:
-      213: -1306818526020743886
-    second: Placeholder ( Player )_3
+      213: -8617004404026540419
+    second: Big Diamond Idle (18x14)_3
   - first:
-      213: -6980533823800286042
-    second: Placeholder ( Player )_4
+      213: -388936619253760004
+    second: Big Diamond Idle (18x14)_4
   - first:
-      213: 3099214932343109214
-    second: Placeholder ( Player )_5
+      213: 7007702355635686782
+    second: Big Diamond Idle (18x14)_5
   - first:
-      213: 2844765235318244386
-    second: Placeholder ( Player )_6
+      213: -5186337078384295754
+    second: Big Diamond Idle (18x14)_6
   - first:
-      213: -1212666143730470242
-    second: Placeholder ( Player )_7
+      213: -3861491957359190046
+    second: Big Diamond Idle (18x14)_7
   - first:
-      213: -137333773086777542
-    second: Placeholder ( Player )_8
+      213: -1205625001301180620
+    second: Big Diamond Idle (18x14)_8
   - first:
-      213: 2104822894233647782
-    second: Placeholder ( Player )_9
-  - first:
-      213: -5689351982196280691
-    second: Placeholder ( Player )_10
+      213: 7845550569223017404
+    second: Big Diamond Idle (18x14)_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -136,13 +133,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Placeholder ( Player )_0
+      name: Big Diamond Idle (18x14)_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 14
-        width: 37
-        height: 26
+        x: 5
+        y: 2
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +147,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e3ee9b51a9218600800000000000000
-      internalID: 468701609226855392
+      spriteID: d938a2dab750b5fb0800000000000000
+      internalID: -4658123360840285283
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Placeholder ( Player )_1
+      name: Big Diamond Idle (18x14)_1
       rect:
         serializedVersion: 2
-        x: 87
-        y: 14
-        width: 37
-        height: 26
+        x: 23
+        y: 2
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +168,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21da876aa979956b0800000000000000
-      internalID: -5307043995405734638
+      spriteID: 4827c321ea3f24180800000000000000
+      internalID: -9132469165398134140
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Placeholder ( Player )_2
+      name: Big Diamond Idle (18x14)_2
       rect:
         serializedVersion: 2
-        x: 165
-        y: 14
-        width: 37
-        height: 26
+        x: 41
+        y: 2
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +189,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c06f8918607aaf50800000000000000
-      internalID: 6893445772051701952
+      spriteID: 56181855a54989bf0800000000000000
+      internalID: -317340658027101851
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Placeholder ( Player )_3
+      name: Big Diamond Idle (18x14)_3
       rect:
         serializedVersion: 2
-        x: 243
-        y: 14
-        width: 37
-        height: 26
+        x: 59
+        y: 2
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,20 +210,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23d42a2797f3ddde0800000000000000
-      internalID: -1306818526020743886
+      spriteID: d7e750e36204a6880800000000000000
+      internalID: -8617004404026540419
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Placeholder ( Player )_4
+      name: Big Diamond Idle (18x14)_4
       rect:
         serializedVersion: 2
-        x: 321
-        y: 14
-        width: 37
-        height: 26
+        x: 77
+        y: 2
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,20 +231,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a4e8c1c879202f90800000000000000
-      internalID: -6980533823800286042
+      spriteID: cfffc3994383a9af0800000000000000
+      internalID: -388936619253760004
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Placeholder ( Player )_5
+      name: Big Diamond Idle (18x14)_5
       rect:
         serializedVersion: 2
-        x: 399
-        y: 14
-        width: 37
-        height: 26
+        x: 95
+        y: 2
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,20 +252,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e56b5e48f8f920b20800000000000000
-      internalID: 3099214932343109214
+      spriteID: e7d455ff92c504160800000000000000
+      internalID: 7007702355635686782
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Placeholder ( Player )_6
+      name: Big Diamond Idle (18x14)_6
       rect:
         serializedVersion: 2
-        x: 477
-        y: 14
-        width: 37
-        height: 27
+        x: 113
+        y: 2
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,20 +273,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2244688c8e2aa7720800000000000000
-      internalID: 2844765235318244386
+      spriteID: 6b08775d7ed6608b0800000000000000
+      internalID: -5186337078384295754
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Placeholder ( Player )_7
+      name: Big Diamond Idle (18x14)_7
       rect:
         serializedVersion: 2
-        x: 555
-        y: 14
-        width: 37
-        height: 28
+        x: 131
+        y: 2
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -297,20 +294,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e927dc7319ebb2fe0800000000000000
-      internalID: -1212666143730470242
+      spriteID: 2efd39a1689396ac0800000000000000
+      internalID: -3861491957359190046
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Placeholder ( Player )_8
+      name: Big Diamond Idle (18x14)_8
       rect:
         serializedVersion: 2
-        x: 633
-        y: 14
-        width: 37
-        height: 28
+        x: 149
+        y: 2
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -318,20 +315,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3f9f7739a7181ef0800000000000000
-      internalID: -137333773086777542
+      spriteID: 43ffc11f272c44fe0800000000000000
+      internalID: -1205625001301180620
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Placeholder ( Player )_9
+      name: Big Diamond Idle (18x14)_9
       rect:
         serializedVersion: 2
-        x: 711
-        y: 14
-        width: 37
-        height: 27
+        x: 167
+        y: 2
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -339,29 +336,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6aaf7ed3545d53d10800000000000000
-      internalID: 2104822894233647782
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Placeholder ( Player )_10
-      rect:
-        serializedVersion: 2
-        x: 789
-        y: 14
-        width: 37
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d82b603048c5b01b0800000000000000
-      internalID: -5689351982196280691
+      spriteID: cb3d6e9dcaef0ec60800000000000000
+      internalID: 7845550569223017404
       vertices: []
       indices: 
       edges: []
