@@ -364,6 +364,7 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRigidBody.velocity = playerJumpForce * Vector2.up;
             jumps--;
+
         }
 
         else if (Input.GetKeyUp(JumpKey) && jumps == 0 && isGrounded == true)
