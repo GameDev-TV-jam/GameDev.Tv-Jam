@@ -13,14 +13,9 @@ public class PlayerMovement : MonoBehaviour
     int jumps;
 
     float moveInput;
-    float glideCurrentTimer;
-    float glideDirection;
 
     bool facingRight = true;
     bool isGrounded;
-    bool isWalled;
-    bool isGliding;
-    bool glideCheck = true;
     bool isDashing;
 
     #endregion
@@ -41,24 +36,12 @@ public class PlayerMovement : MonoBehaviour
     bool canJump;
 
     [SerializeField]
-    bool canGlide;
-
-    [SerializeField]
-    bool canWallJump;
-
-    [SerializeField]
     bool canDash;
 
     [Header("Key Codes")]
 
     [SerializeField]
     KeyCode JumpKey;
-
-    [SerializeField]
-    KeyCode GlideKey;
-
-    [SerializeField]
-    KeyCode DashKey;
 
     public Animator animator;
 
@@ -72,17 +55,6 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     LayerMask WhatIsGround;
-
-    [Header("Wall Jump Components")]
-
-    [SerializeField]
-    Transform wallCheck;
-
-    [SerializeField]
-    float wallCheckRadius;
-
-    [SerializeField]
-    LayerMask WhatIsWall;
 
     [Header("Player Move Settings")]
 
@@ -100,11 +72,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     int extraJumps;
 
-    [Header("Player Glide Settings")]
-
-    [SerializeField] float GlideForce;
-    [SerializeField] float StartGlideTime;
-
     [Header("Player Dash Settings")]
     [SerializeField]
     float dashPower = 14f;
@@ -117,9 +84,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Slider healthBar;
     [SerializeField] private Image healthFill;
 
-    [SerializeField] float deathFall = -40f; // how far the player falls below 0 on y-axis before dying
+    //[SerializeField] float deathFall = -40f; // how far the player falls below 0 on y-axis before dying
     [SerializeField] GameObject fireBall;
     [SerializeField] Vector2 fireBallVelocity = new Vector2(1.5f, 0f);
+    [SerializeField] Text currentAbilityText;
 
 
     public float maxHealth = 3;
@@ -127,6 +95,11 @@ public class PlayerMovement : MonoBehaviour
     bool isAlive = true;
     bool isTakingDamage = false;
     bool isKnockedBack = false;
+
+    bool FireSpecial = false;
+    bool DashSpecial = false;
+
+    int SpecialNum;
 
     float lastXPosition;
     float lastYPosition;
@@ -142,7 +115,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
-        Gizmos.DrawWireSphere(wallCheck.position, wallCheckRadius);
     }
 
     private void Awake()
@@ -161,6 +133,40 @@ public class PlayerMovement : MonoBehaviour
             gameObject.transform.position = new Vector2(PlayerPrefs.GetFloat("PositionX"), PlayerPrefs.GetFloat("PositionY"));
         }
 
+        lastXPosition = gameObject.transform.position.x;
+        lastYPosition = gameObject.transform.position.y;
+
+        PlayerPrefs.SetFloat("PositionX", lastXPosition);
+        PlayerPrefs.SetFloat("PositionY", lastYPosition);
+        PlayerPrefs.SetInt("CurrentLevel", SceneManager.GetActiveScene().buildIndex);
+
+        SpecialNum = UnityEngine.Random.Range(0, 3);
+
+        if(SpecialNum == 0)
+        {
+            extraJumps = 1;
+            FireSpecial = false;
+            DashSpecial = false;
+
+            currentAbilityText.text = "Double Jump";
+        }
+        if (SpecialNum == 1)
+        {
+            extraJumps = 0;
+            FireSpecial = true;
+            DashSpecial = false;
+
+            currentAbilityText.text = "Fireball";
+        }
+        if (SpecialNum == 2)
+        {
+            extraJumps = 0;
+            FireSpecial = false;
+            DashSpecial = true;
+
+            currentAbilityText.text = "Dash";
+        }
+
     }
 
     private void Update()
@@ -172,23 +178,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded == true)
         {
-            glideCheck = true;
             jumps = extraJumps;
         }
 
         if(canJump)
         {
             JumpMechanism();
-        }
-
-        if(canGlide)
-        {
-            GlideMechanics();
-        }
-
-        if(canWallJump)
-        {
-            WallJumpMechanism();
         }
 
         if(canDash)
@@ -204,8 +199,6 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, WhatIsGround);
-
-        isWalled = Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, WhatIsWall);
 
         if(canWalk)
         {
@@ -251,7 +244,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ShootFireball()
     {
-        if (CrossPlatformInputManager.GetButtonDown("Fire2"))
+        if (CrossPlatformInputManager.GetButtonDown("Fire2") && FireSpecial == true)
         {
             fireBallSpawnPoint = new Vector2(gameObject.transform.GetChild(0).transform.position.x, gameObject.transform.GetChild(0).transform.position.y);
             GameObject fireBallInstance = Instantiate(fireBall, fireBallSpawnPoint, Quaternion.identity);
@@ -272,7 +265,7 @@ public class PlayerMovement : MonoBehaviour
     private void Die()
     {
 
-        if (playerRigidBody.transform.position.y < deathFall || health <= 0)
+        if (health <= 0)
         {
             isAlive = false;
             lastXPosition = gameObject.transform.position.x;
@@ -362,18 +355,6 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
-    #region Wall Mechanics
-
-    void WallJumpMechanism()
-    {
-        if(isWalled)
-        {
-            jumps = extraJumps;
-        }
-    }
-
-    #endregion
-
     #region Flip Mechanics
 
     void FlipCharacter()
@@ -386,47 +367,11 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
-    #region Glide Mechanics
-
-    void GlideMechanics()
-    {
-        float movX = Input.GetAxis("Horizontal");
-
-        if(Input.GetKeyDown(GlideKey) && !isGrounded && movX != 0 && glideCheck)
-        {
-            isGliding = true;
-            glideCurrentTimer = StartGlideTime;
-            playerRigidBody.velocity = Vector2.zero;
-            glideDirection = (int)movX;
-        }
-
-        if(Input.GetKeyUp(GlideKey))
-        {
-            isGliding = false;
-            glideCheck = false;
-        }
-
-        if (isGliding)
-        {
-            playerRigidBody.velocity = transform.right * glideDirection * GlideForce;
-
-            glideCurrentTimer -= Time.deltaTime;
-
-            if (glideCurrentTimer <= 0)
-            {
-                isGliding = false;
-                glideCheck = false;
-            }
-        }
-    }
-
-    #endregion
-
     #region Dash Mechanism
 
     void DashMechanism()
     {
-        if(CrossPlatformInputManager.GetButtonDown("Fire2"))
+        if(CrossPlatformInputManager.GetButtonDown("Fire2") && DashSpecial == true)
         {
             StartCoroutine(Dash());
         }
