@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -127,6 +128,9 @@ public class PlayerMovement : MonoBehaviour
     bool isTakingDamage = false;
     bool isKnockedBack = false;
 
+    float lastXPosition;
+    float lastYPosition;
+
     Vector2 fireBallSpawnPoint;
     Vector2 Knockback;
 
@@ -151,6 +155,12 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         moveSpeed = baseSpeed;
+
+        if (PlayerPrefs.HasKey("PositionX"))
+        {
+            gameObject.transform.position = new Vector2(PlayerPrefs.GetFloat("PositionX"), PlayerPrefs.GetFloat("PositionY"));
+        }
+
     }
 
     private void Update()
@@ -188,6 +198,7 @@ public class PlayerMovement : MonoBehaviour
 
         Die();
         ShootFireball();
+        Pause();
     }
 
     private void FixedUpdate()
@@ -207,10 +218,40 @@ public class PlayerMovement : MonoBehaviour
     #region Player Attributes
 
     #region Movement Mechanics
+    
+    private void Pause()
+    {
+        if (CrossPlatformInputManager.GetButtonDown("Cancel"))
+        {
+            transform.GetChild(2).gameObject.SetActive(true);
+            Time.timeScale = 0;
+        }
+    }
+
+    public void UnPause()
+    {
+        Time.timeScale = 1;
+        transform.GetChild(2).gameObject.SetActive(false);
+    }
+
+    public void ClearPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
+    public void Save()
+    {
+        lastXPosition = gameObject.transform.position.x;
+        lastYPosition = gameObject.transform.position.y;
+
+        PlayerPrefs.SetFloat("PositionX", lastXPosition);
+        PlayerPrefs.SetFloat("PositionY", lastYPosition);
+        PlayerPrefs.SetInt("CurrentLevel", SceneManager.GetActiveScene().buildIndex);
+    }
 
     private void ShootFireball()
     {
-        if (CrossPlatformInputManager.GetButtonDown("Fire1"))
+        if (CrossPlatformInputManager.GetButtonDown("Fire2"))
         {
             fireBallSpawnPoint = new Vector2(gameObject.transform.GetChild(0).transform.position.x, gameObject.transform.GetChild(0).transform.position.y);
             GameObject fireBallInstance = Instantiate(fireBall, fireBallSpawnPoint, Quaternion.identity);
@@ -224,9 +265,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 fireBallInstance.GetComponent<Rigidbody2D>().velocity = fireBallVelocity * -1;
             }
-            
         }
     }
+
 
     private void Die()
     {
@@ -234,9 +275,15 @@ public class PlayerMovement : MonoBehaviour
         if (playerRigidBody.transform.position.y < deathFall || health <= 0)
         {
             isAlive = false;
+            lastXPosition = gameObject.transform.position.x;
+            lastYPosition = gameObject.transform.position.y;
+
+            PlayerPrefs.SetFloat("PositionX", lastXPosition);
+            PlayerPrefs.SetFloat("PositionY", lastYPosition);
+            PlayerPrefs.SetInt("CurrentLevel", SceneManager.GetActiveScene().buildIndex);
+            
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            //myAnimator.SetTrigger("Dying");
-            //ResetHealth();
+
         }
     }
 
@@ -268,6 +315,11 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(.3f);
         isKnockedBack = false;
         isTakingDamage = false;
+    }
+
+    public void Suicide()
+    {
+        health = 0;
     }
 
     void PlayerMove()
@@ -374,7 +426,7 @@ public class PlayerMovement : MonoBehaviour
 
     void DashMechanism()
     {
-        if(CrossPlatformInputManager.GetButtonDown("Fire1"))
+        if(CrossPlatformInputManager.GetButtonDown("Fire2"))
         {
             StartCoroutine(Dash());
         }

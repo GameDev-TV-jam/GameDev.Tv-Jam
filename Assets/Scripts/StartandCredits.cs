@@ -8,7 +8,16 @@ public class StartandCredits : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        if (PlayerPrefs.HasKey("CurrentLevel"))
+        {
+            SceneManager.LoadScene(PlayerPrefs.GetInt("CurrentLevel"));
+        }
+
+        else
+        {
+            SceneManager.LoadScene(1);
+        }
+        
     }
 
     public void SeeCredits()
