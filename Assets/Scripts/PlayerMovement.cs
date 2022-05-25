@@ -184,6 +184,7 @@ public class PlayerMovement : MonoBehaviour
         if(!playerBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             animator.SetBool("isJumping", true);
+            //Time.timeScale = .1f;
         }
 
         if (playerBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
@@ -285,7 +286,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetTrigger("isDead");
         isAlive = false;
 
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.5f);
 		
         lastXPosition = gameObject.transform.position.x;
         lastYPosition = gameObject.transform.position.y;
@@ -332,11 +333,16 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator TakeDamage()
     {
-        animator.SetTrigger("isHurting");
         isTakingDamage = true;
         isKnockedBack = true;
         playerRigidBody.velocity = Knockback;
         health -= 1;
+
+        if(health != 0)
+        {
+            animator.SetTrigger("isHurting");
+        }
+
         healthBar.value = health;
         yield return new WaitForSeconds(.3f);
         //animator.SetBool("isHurting", false);
