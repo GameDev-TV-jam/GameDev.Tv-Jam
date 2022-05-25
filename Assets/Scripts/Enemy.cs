@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     float xStartPos;
     float currentPos;
 
+    bool isObstructed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,8 +31,9 @@ public class Enemy : MonoBehaviour
 
         currentPos = transform.position.x;
 
-        if(currentPos >= xStartPos + 5 || currentPos <= xStartPos - 5)
+        if(currentPos >= xStartPos + 5 || currentPos <= xStartPos - 5 || isObstructed)
         {
+            isObstructed = false;
             Turn();
         }
 
@@ -57,6 +60,11 @@ public class Enemy : MonoBehaviour
             isAlive = false;
             Destroy(other.gameObject);
             Destroy(gameObject);
+        }
+
+        if(gameObject.GetComponent<CapsuleCollider2D>().IsTouchingLayers(LayerMask.GetMask("Wall")) || !other.CompareTag("Player"))
+        {
+            isObstructed = true;
         }
     }
 }
