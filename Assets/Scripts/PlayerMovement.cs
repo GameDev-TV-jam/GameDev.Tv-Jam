@@ -328,6 +328,11 @@ public class PlayerMovement : MonoBehaviour
             PlayerPrefs.DeleteAll();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+
+        if(other.CompareTag("Barrier") && isDashing)
+        {
+            Destroy(other.gameObject);
+        }
     }
 
     IEnumerator TakeDamage()

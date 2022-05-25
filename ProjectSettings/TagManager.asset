@@ -8,6 +8,7 @@ TagManager:
   - Fireball
   - Collectibles
   - Exit
+  - Barrier
   layers:
   - Default
   - TransparentFX
