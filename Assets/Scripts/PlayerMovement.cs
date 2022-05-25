@@ -140,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (PlayerPrefs.HasKey("PositionX") || PlayerPrefs.HasKey("Collected"))
         {
-            SceneManager.LoadScene(PlayerPrefs.GetInt("CurrentLevel"));
+            //SceneManager.LoadScene(PlayerPrefs.GetInt("CurrentLevel"));
             gameObject.transform.position = new Vector2(PlayerPrefs.GetFloat("PositionX"), PlayerPrefs.GetFloat("PositionY"));
             CollectiblesCount = PlayerPrefs.GetInt("Collected");
             CollectiblesCollectedText.text = CollectiblesCount.ToString();
