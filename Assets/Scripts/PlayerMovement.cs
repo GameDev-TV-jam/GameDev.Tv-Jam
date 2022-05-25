@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -110,6 +111,9 @@ public class PlayerMovement : MonoBehaviour
     Vector2 fireBallSpawnPoint;
     Vector2 Knockback;
 
+    CinemachineVirtualCamera vcam;
+    CinemachineBasicMultiChannelPerlin noise;
+
 
     #endregion
 
@@ -129,6 +133,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        vcam = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
+        noise = vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
         moveSpeed = baseSpeed;
 
         if (PlayerPrefs.HasKey("PositionX") || PlayerPrefs.HasKey("Collected"))
@@ -331,6 +338,8 @@ public class PlayerMovement : MonoBehaviour
 
         if(other.CompareTag("Barrier") && isDashing)
         {
+            noise.m_AmplitudeGain = 5;
+            noise.m_FrequencyGain = 5;
             Destroy(other.gameObject);
         }
     }
@@ -349,7 +358,6 @@ public class PlayerMovement : MonoBehaviour
 
         healthBar.value = health;
         yield return new WaitForSeconds(.3f);
-        //animator.SetBool("isHurting", false);
         isKnockedBack = false;
         isTakingDamage = false;
     }
@@ -436,6 +444,8 @@ public class PlayerMovement : MonoBehaviour
 
         yield return new WaitForSeconds(dashTime);
         isDashing = false;
+        noise.m_AmplitudeGain = 0;
+        noise.m_FrequencyGain = 0;
     }
 
     #endregion
