@@ -184,7 +184,6 @@ public class PlayerMovement : MonoBehaviour
         if(!playerBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             animator.SetBool("isJumping", true);
-            //Time.timeScale = .1f;
         }
 
         if (playerBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
