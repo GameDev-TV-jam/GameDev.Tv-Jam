@@ -2109,6 +2109,7 @@ MonoBehaviour:
   fireBallVelocity: {x: 1.5, y: 0}
   currentAbilityText: {fileID: 2095456084}
   CollectiblesCollectedText: {fileID: 1701662740}
+  playerBoxCollider: {fileID: 1028240786023205929}
   maxHealth: 3
   health: 3
 --- !u!1 &5678199039828954102

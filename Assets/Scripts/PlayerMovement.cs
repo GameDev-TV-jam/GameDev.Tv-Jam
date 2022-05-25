@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     float moveInput;
 
     bool facingRight = true;
-    bool isGrounded;
+    //bool isGrounded;
     bool isDashing;
 
     #endregion
@@ -89,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 fireBallVelocity = new Vector2(1.5f, 0f);
     [SerializeField] Text currentAbilityText;
     [SerializeField] Text CollectiblesCollectedText;
+    [SerializeField] BoxCollider2D playerBoxCollider;
 
 
     public float maxHealth = 3;
@@ -180,9 +181,15 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (isGrounded == true)
+        if(!playerBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            animator.SetBool("isJumping", true);
+        }
+
+        if (playerBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             jumps = extraJumps;
+            animator.SetBool("isJumping", false);
         }
 
         if(canJump)
@@ -194,15 +201,21 @@ public class PlayerMovement : MonoBehaviour
         {
             DashMechanism();
         }
-
-        Die();
+        
         ShootFireball();
         Pause();
-    }
+
+        if (health <= 0)
+        {
+            StartCoroutine(Die());
+        }
+
+
+        }
 
     private void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, WhatIsGround);
+        //isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, WhatIsGround);
 
         if(canWalk)
         {
@@ -267,22 +280,22 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private void Die()
+    IEnumerator Die()
     {
+        animator.SetTrigger("isDead");
+        isAlive = false;
 
-        if (health <= 0)
-        {
-            isAlive = false;
-            lastXPosition = gameObject.transform.position.x;
-            lastYPosition = gameObject.transform.position.y;
+        yield return new WaitForSeconds(.1f);
+		
+        lastXPosition = gameObject.transform.position.x;
+        lastYPosition = gameObject.transform.position.y;
 
-            PlayerPrefs.SetFloat("PositionX", lastXPosition);
-            PlayerPrefs.SetFloat("PositionY", lastYPosition);
-            PlayerPrefs.SetInt("CurrentLevel", SceneManager.GetActiveScene().buildIndex);
-            
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        PlayerPrefs.SetFloat("PositionX", lastXPosition);
+        PlayerPrefs.SetFloat("PositionY", lastYPosition);
+        PlayerPrefs.SetInt("CurrentLevel", SceneManager.GetActiveScene().buildIndex);
 
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -291,12 +304,12 @@ public class PlayerMovement : MonoBehaviour
         {
             if(other.gameObject.transform.position.x > this.transform.position.x)
             {
-                Knockback = new Vector2(-5f, 3f);
+                Knockback = new Vector2(-5f, 0f);
             }
 
             if (other.gameObject.transform.position.x < this.transform.position.x)
             {
-                Knockback = new Vector2(5f, 3f);
+                Knockback = new Vector2(5f, 0f);
             }
 
             StartCoroutine(TakeDamage());
@@ -319,12 +332,14 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator TakeDamage()
     {
+        animator.SetTrigger("isHurting");
         isTakingDamage = true;
         isKnockedBack = true;
         playerRigidBody.velocity = Knockback;
         health -= 1;
         healthBar.value = health;
         yield return new WaitForSeconds(.3f);
+        //animator.SetBool("isHurting", false);
         isKnockedBack = false;
         isTakingDamage = false;
     }
@@ -367,7 +382,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        else if (Input.GetKeyUp(JumpKey) && jumps == 0 && isGrounded == true)
+        else if (Input.GetKeyUp(JumpKey) && jumps == 0 && playerBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             playerRigidBody.velocity = playerJumpForce * Vector2.up;
         }
