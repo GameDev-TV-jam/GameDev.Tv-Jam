@@ -55,6 +55,9 @@ TagManager:
   - name: Objects
     uniqueID: 4136264851
     locked: 0
+  - name: Particle System
+    uniqueID: 18664597
+    locked: 0
   - name: Character
     uniqueID: 3747001765
     locked: 0
