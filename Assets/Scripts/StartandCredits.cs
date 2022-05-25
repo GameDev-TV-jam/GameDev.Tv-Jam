@@ -32,4 +32,9 @@ public class StartandCredits : MonoBehaviour
         transform.GetChild(1).gameObject.SetActive(false);
         transform.GetChild(0).gameObject.SetActive(true);
     }
+
+    public void BacktoStartScreen()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
