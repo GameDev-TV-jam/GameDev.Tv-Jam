@@ -219,8 +219,13 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(Die());
         }
 
-
+        if (CrossPlatformInputManager.GetButtonDown("Fire3"))
+        {
+            Suicide();
         }
+
+
+    }
 
     private void FixedUpdate()
     {
