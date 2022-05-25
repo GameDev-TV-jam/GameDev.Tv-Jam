@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: ddcd1f82c65836447a1c808949341800
+guid: ca2acca3ba1310948bc878c348057925
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8421073974867528693
-    second: KingJump_0
+      213: 2356467443261337910
+    second: KingJump1_0
   - first:
-      213: -4308193151019206841
-    second: KingJump_1
+      213: 2918594228159913447
+    second: KingJump1_1
   - first:
-      213: 4806690165110651654
-    second: KingJump_2
+      213: 5183093802037937964
+    second: KingJump1_2
   - first:
-      213: 4694514210312196598
-    second: KingJump_3
+      213: -1930219829586272867
+    second: KingJump1_3
   - first:
-      213: -7121991886917548945
-    second: KingJump_4
+      213: -4582856368250242927
+    second: KingJump1_4
   - first:
-      213: -90828239124219082
-    second: KingJump_5
+      213: 3004462437581392794
+    second: KingJump1_5
   - first:
-      213: -8329693088746650465
-    second: KingJump_7
+      213: -1777420723727188253
+    second: KingJump1_7
   - first:
-      213: 3112780635508599261
-    second: KingJump_8
+      213: 974914251980248957
+    second: KingJump1_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -127,7 +127,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: KingJump_0
+      name: KingJump1_0
       rect:
         serializedVersion: 2
         x: 45
@@ -141,14 +141,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5fb0443d92aadd470800000000000000
-      internalID: 8421073974867528693
+      spriteID: 6317d5097aad3b020800000000000000
+      internalID: 2356467443261337910
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KingJump_1
+      name: KingJump1_1
       rect:
         serializedVersion: 2
         x: 78
@@ -162,14 +162,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 747bab9a7293634c0800000000000000
-      internalID: -4308193151019206841
+      spriteID: 7ed1af4bcfde08820800000000000000
+      internalID: 2918594228159913447
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KingJump_2
+      name: KingJump1_2
       rect:
         serializedVersion: 2
         x: 113
@@ -183,14 +183,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60bb8ccfc3bc4b240800000000000000
-      internalID: 4806690165110651654
+      spriteID: c27000c0a5c0ee740800000000000000
+      internalID: 5183093802037937964
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KingJump_3
+      name: KingJump1_3
       rect:
         serializedVersion: 2
         x: 148
@@ -204,14 +204,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f19eaa3dc3462140800000000000000
-      internalID: 4694514210312196598
+      spriteID: d9d581faa4b7635e0800000000000000
+      internalID: -1930219829586272867
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KingJump_4
+      name: KingJump1_4
       rect:
         serializedVersion: 2
         x: 183
@@ -225,14 +225,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f64c01fdc1a992d90800000000000000
-      internalID: -7121991886917548945
+      spriteID: 198bec10a6c6660c0800000000000000
+      internalID: -4582856368250242927
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KingJump_5
+      name: KingJump1_5
       rect:
         serializedVersion: 2
         x: 216
@@ -246,14 +246,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63b3d6f92305dbef0800000000000000
-      internalID: -90828239124219082
+      spriteID: a9b0b0d2baef1b920800000000000000
+      internalID: 3004462437581392794
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KingJump_7
+      name: KingJump1_7
       rect:
         serializedVersion: 2
         x: 5
@@ -267,14 +267,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f94ca35b44cf66c80800000000000000
-      internalID: -8329693088746650465
+      spriteID: 3eeb2d9d4455557e0800000000000000
+      internalID: -1777420723727188253
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KingJump_8
+      name: KingJump1_8
       rect:
         serializedVersion: 2
         x: 254
@@ -288,8 +288,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd9643bee71d23b20800000000000000
-      internalID: 3112780635508599261
+      spriteID: d779fbbc857978d00800000000000000
+      internalID: 974914251980248957
       vertices: []
       indices: 
       edges: []
