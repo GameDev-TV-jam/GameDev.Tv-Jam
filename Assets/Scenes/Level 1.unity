@@ -23728,7 +23728,7 @@ GameObject:
   - component: {fileID: 1186329359}
   m_Layer: 6
   m_Name: Wall_Tiles
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25703,7 +25703,7 @@ GameObject:
   - component: {fileID: 1298644938}
   m_Layer: 3
   m_Name: Floor_Tiles
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54824,10 +54824,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 888620493631661060, guid: 7bc96e2ff6adf1f4b9725c7176c4902f, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1957249654083797906, guid: 7bc96e2ff6adf1f4b9725c7176c4902f, type: 3}
       propertyPath: m_RootOrder
       value: 9

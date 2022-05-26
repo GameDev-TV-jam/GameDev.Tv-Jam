@@ -9,6 +9,8 @@ TagManager:
   - Collectibles
   - Exit
   - Barrier
+  - Ground
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -9,8 +9,6 @@ public class Enemy : MonoBehaviour
     bool isAlive = true;
     public Animator animator;
 
-    Rigidbody2D enemyRB;
-
     float xStartPos;
     float currentPos;
 
@@ -20,13 +18,13 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
-
         xStartPos = transform.position.x;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (!isAlive)
         {
             return;
@@ -34,7 +32,7 @@ public class Enemy : MonoBehaviour
 
         currentPos = transform.position.x;
 
-        if(currentPos >= xStartPos + 5 || currentPos <= xStartPos - 5 || isObstructed)
+        if(currentPos >= xStartPos + 5 || currentPos <= xStartPos - 5 || isObstructed || !gameObject.transform.GetChild(1).GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             isObstructed = false;
             Turn();
@@ -65,7 +63,12 @@ public class Enemy : MonoBehaviour
             StartCoroutine(Die());
         }
 
-        if(gameObject.GetComponent<CapsuleCollider2D>().IsTouchingLayers(LayerMask.GetMask("Wall")) || !other.CompareTag("Player"))
+        if (!other.CompareTag("Player") && !other.CompareTag("Ground") && !other.CompareTag("Wall"))
+        {
+            isObstructed = true;
+        }
+
+        if(gameObject.GetComponent<CapsuleCollider2D>().IsTouchingLayers(LayerMask.GetMask("Wall")))
         {
             isObstructed = true;
         }
@@ -73,10 +76,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator Die()
     {
-        enemyRB = GetComponent<Rigidbody2D>();
-        enemyRB.velocity = new Vector2(0f, 3.2f);
-
-        //enemyRB.constraints = RigidbodyConstraints2D.FreezePositionY;
+        myRigidBody.velocity = new Vector2(0f, 3.2f);
         animator.SetBool("isDead", true);
         yield return new WaitForSeconds(.5f);
         Destroy(gameObject);
