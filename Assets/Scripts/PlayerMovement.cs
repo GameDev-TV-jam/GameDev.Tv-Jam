@@ -277,7 +277,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ShootFireball()
     {
-        if (CrossPlatformInputManager.GetButtonDown("Fire2") && FireSpecial == true)
+        if (CrossPlatformInputManager.GetButtonDown("Fire1") && FireSpecial == true)
         {
             fireBallSpawnPoint = new Vector2(gameObject.transform.GetChild(0).transform.position.x, gameObject.transform.GetChild(0).transform.position.y);
             GameObject fireBallInstance = Instantiate(fireBall, fireBallSpawnPoint, Quaternion.identity);
