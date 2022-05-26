@@ -880,6 +880,7 @@ MonoBehaviour:
   CollectiblesCollectedText: {fileID: 8704899642060186604}
   playerBoxCollider: {fileID: 8541938259276218321}
   barrier: {fileID: 1434128430755909158, guid: 0cc9f1ba006aeb045b6f12c6dc6674b3, type: 3}
+  player: {fileID: 4499555614494365276}
   maxHealth: 3
   health: 3
 --- !u!1 &5225034344717802928

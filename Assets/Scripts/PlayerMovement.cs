@@ -93,6 +93,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] BoxCollider2D playerBoxCollider;
     [SerializeField] Barrier barrier;
 
+    public PlayerMovement player;
+
 
     public float maxHealth = 3;
     public float health = 3;
@@ -136,6 +138,13 @@ public class PlayerMovement : MonoBehaviour
     {
         vcam = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
         noise = vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+        playerRigidBody.constraints = RigidbodyConstraints2D.None;
+        playerRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        Vector3 scalar = transform.localScale;
+        scalar.x = 1;
+        transform.localScale = scalar;
 
         moveSpeed = baseSpeed;
 
@@ -302,6 +311,7 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.SetTrigger("isDead");
         isAlive = false;
+        this.playerRigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
 
         yield return new WaitForSeconds(1.5f);
 		
@@ -312,7 +322,9 @@ public class PlayerMovement : MonoBehaviour
         PlayerPrefs.SetFloat("PositionY", lastYPosition);
         PlayerPrefs.SetInt("CurrentLevel", SceneManager.GetActiveScene().buildIndex);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Instantiate(player, this.transform.position, player.transform.rotation);
+        Destroy(this.gameObject);
 
     }
 
