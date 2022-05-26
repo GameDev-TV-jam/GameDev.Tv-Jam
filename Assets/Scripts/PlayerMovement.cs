@@ -91,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Text currentAbilityText;
     [SerializeField] Text CollectiblesCollectedText;
     [SerializeField] BoxCollider2D playerBoxCollider;
+    [SerializeField] Barrier barrier;
 
 
     public float maxHealth = 3;
@@ -347,7 +348,8 @@ public class PlayerMovement : MonoBehaviour
         {
             noise.m_AmplitudeGain = 5;
             noise.m_FrequencyGain = 5;
-            Destroy(other.gameObject);
+            barrier = other.gameObject.GetComponent<Barrier>();
+            StartCoroutine(barrier.DestroyBarrier());
         }
     }
 
