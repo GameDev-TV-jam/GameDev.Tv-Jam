@@ -148,6 +148,9 @@ public class PlayerMovement : MonoBehaviour
 
         moveSpeed = baseSpeed;
 
+        vcam.Follow = this.transform;
+        vcam.LookAt = this.transform;
+
         if (PlayerPrefs.HasKey("PositionX") || PlayerPrefs.HasKey("Collected"))
         {
             //SceneManager.LoadScene(PlayerPrefs.GetInt("CurrentLevel"));
@@ -309,23 +312,25 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Die()
     {
-        animator.SetTrigger("isDead");
-        isAlive = false;
-        this.playerRigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
+        if (isAlive)
+        {
+            isAlive = false;
+            animator.SetTrigger("isDead");
+            this.playerRigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
 
-        yield return new WaitForSeconds(1.5f);
-		
-        lastXPosition = gameObject.transform.position.x;
-        lastYPosition = gameObject.transform.position.y;
+            yield return new WaitForSeconds(1.5f);
 
-        PlayerPrefs.SetFloat("PositionX", lastXPosition);
-        PlayerPrefs.SetFloat("PositionY", lastYPosition);
-        PlayerPrefs.SetInt("CurrentLevel", SceneManager.GetActiveScene().buildIndex);
+            lastXPosition = gameObject.transform.position.x;
+            lastYPosition = gameObject.transform.position.y;
 
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Instantiate(player, this.transform.position, player.transform.rotation);
-        Destroy(this.gameObject);
+            PlayerPrefs.SetFloat("PositionX", lastXPosition);
+            PlayerPrefs.SetFloat("PositionY", lastYPosition);
+            PlayerPrefs.SetInt("CurrentLevel", SceneManager.GetActiveScene().buildIndex);
 
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Instantiate(player, this.transform.position, player.transform.rotation);
+            Destroy(this.gameObject);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -393,7 +398,7 @@ public class PlayerMovement : MonoBehaviour
 
     void PlayerMove()
     {
-        if(!isDashing && !isKnockedBack)
+        if(!isDashing && !isKnockedBack && isAlive)
         {
             moveInput = Input.GetAxis("Horizontal");
             animator.SetFloat("Speed", Mathf.Abs(moveInput));
