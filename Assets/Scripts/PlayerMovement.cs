@@ -97,6 +97,10 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] int keysToUnlockDoor = 5;
 
+    [SerializeField] ParticleSystem dashParticles;
+
+    [SerializeField] TrailRenderer dashTrail;
+
     public PlayerMovement player;
 
 
@@ -492,10 +496,14 @@ public class PlayerMovement : MonoBehaviour
             playerRigidBody.velocity = new Vector2(-dashPower, playerRigidBody.velocity.y);
         }
 
+        //dashParticles.Play();
+        dashTrail.emitting = true;
+
         yield return new WaitForSeconds(dashTime);
         isDashing = false;
         noise.m_AmplitudeGain = 0;
         noise.m_FrequencyGain = 0;
+        dashTrail.emitting = false;
     }
 
     #endregion
