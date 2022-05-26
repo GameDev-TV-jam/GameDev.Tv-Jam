@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float moveSpeed = 1f;
     Rigidbody2D myRigidBody;
     bool isAlive = true;
+    public Animator animator;
 
     float xStartPos;
     float currentPos;
@@ -59,13 +60,20 @@ public class Enemy : MonoBehaviour
         {
             isAlive = false;
             Destroy(other.gameObject);
-            Destroy(gameObject);
+            StartCoroutine(Die());
         }
 
         if(gameObject.GetComponent<CapsuleCollider2D>().IsTouchingLayers(LayerMask.GetMask("Wall")) || !other.CompareTag("Player"))
         {
             isObstructed = true;
         }
+    }
+
+    IEnumerator Die()
+    {
+        animator.SetBool("isDead", true);
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 }
 
