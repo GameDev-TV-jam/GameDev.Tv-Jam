@@ -289,6 +289,9 @@ public class PlayerMovement : MonoBehaviour
 
             if(!facingRight)
             {
+                Vector3 scalar = fireBallInstance.transform.localScale;
+                scalar.x *= -1;
+                fireBallInstance.transform.localScale = scalar;
                 fireBallInstance.GetComponent<Rigidbody2D>().velocity = fireBallVelocity * -1;
             }
         }

@@ -19703,7 +19703,7 @@ PrefabInstance:
     - target: {fileID: 2718775243066803061, guid: 2a57b0847a9bcf546898a21c45be9397, type: 3}
       propertyPath: m_LookAt
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 856249069}
     - target: {fileID: 2718775243066803062, guid: 2a57b0847a9bcf546898a21c45be9397, type: 3}
       propertyPath: m_Name
       value: CM vcam1

@@ -12503,6 +12503,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 428676b9106ca254c9b037f81b6b3a76, type: 3}
+--- !u!4 &1738947307 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4699137299908755036, guid: 428676b9106ca254c9b037f81b6b3a76, type: 3}
+  m_PrefabInstance: {fileID: 1738947306}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1743284052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13540,6 +13545,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2718775243066803061, guid: 2a57b0847a9bcf546898a21c45be9397, type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 1738947307}
+    - target: {fileID: 2718775243066803061, guid: 2a57b0847a9bcf546898a21c45be9397, type: 3}
+      propertyPath: m_LookAt
+      value: 
+      objectReference: {fileID: 1738947307}
     - target: {fileID: 2718775243066803062, guid: 2a57b0847a9bcf546898a21c45be9397, type: 3}
       propertyPath: m_Name
       value: CM vcam1
