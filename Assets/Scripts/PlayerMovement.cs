@@ -93,6 +93,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] BoxCollider2D playerBoxCollider;
     [SerializeField] Barrier barrier;
 
+    [SerializeField] Text unlockDoorText;
+
+    [SerializeField] int keysToUnlockDoor = 5;
+
     public PlayerMovement player;
 
 
@@ -318,7 +322,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("isDead");
             this.playerRigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
 
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1f);
 
             lastXPosition = gameObject.transform.position.x;
             lastYPosition = gameObject.transform.position.y;
@@ -360,8 +364,15 @@ public class PlayerMovement : MonoBehaviour
 
         if(other.CompareTag("Exit"))
         {
-            PlayerPrefs.DeleteAll();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            if (CollectiblesCount >= keysToUnlockDoor)
+            {
+                PlayerPrefs.DeleteAll();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            else
+            {
+                StartCoroutine(UnlockDoorMessage());
+            }
         }
 
         if(other.CompareTag("Barrier") && isDashing)
@@ -371,6 +382,16 @@ public class PlayerMovement : MonoBehaviour
             barrier = other.gameObject.GetComponent<Barrier>();
             StartCoroutine(barrier.DestroyBarrier());
         }
+    }
+
+    IEnumerator UnlockDoorMessage()
+    {
+        transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(true);
+        unlockDoorText.text = "You need " + (keysToUnlockDoor - CollectiblesCount) + " more key(s) to unlock the door!";
+
+        yield return new WaitForSeconds(1f);
+        unlockDoorText.text = "";
+        transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(false);
     }
 
     IEnumerator TakeDamage()
