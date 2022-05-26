@@ -303,7 +303,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetTrigger("isDead");
         isAlive = false;
 
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(1.5f);
 		
         lastXPosition = gameObject.transform.position.x;
         lastYPosition = gameObject.transform.position.y;

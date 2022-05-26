@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     bool isAlive = true;
     public Animator animator;
 
+    Rigidbody2D enemyRB;
+
     float xStartPos;
     float currentPos;
 
@@ -71,8 +73,12 @@ public class Enemy : MonoBehaviour
 
     IEnumerator Die()
     {
+        enemyRB = GetComponent<Rigidbody2D>();
+        enemyRB.velocity = new Vector2(0f, 3.2f);
+
+        //enemyRB.constraints = RigidbodyConstraints2D.FreezePositionY;
         animator.SetBool("isDead", true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.5f);
         Destroy(gameObject);
     }
 }
