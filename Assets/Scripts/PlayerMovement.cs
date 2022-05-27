@@ -105,7 +105,6 @@ public class PlayerMovement : MonoBehaviour
 
     public PlayerMovement player;
 
-    ParticleSystem keyParticles;
 
     public float maxHealth = 3;
     public float health = 3;
@@ -379,14 +378,10 @@ public class PlayerMovement : MonoBehaviour
 
         if(other.CompareTag("Collectibles"))
         {
-            Key = other.gameObject;
-            keyParticles = Key.transform.GetChild(1).GetComponent<ParticleSystem>();
-            keyParticles.Play();
             CollectiblesCount += 1;
             CollectiblesCollectedText.text = CollectiblesCount.ToString();
             PlayerPrefs.SetInt("Collected", CollectiblesCount);
-
-            StartCoroutine(ByeByeKey(Key));
+            Destroy(other.gameObject);
         }
 
         if(other.CompareTag("Exit"))
@@ -419,12 +414,6 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(1f);
         unlockDoorText.text = "";
         transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(false);
-    }
-
-    IEnumerator ByeByeKey(GameObject Key)
-    {
-        yield return new WaitForSeconds(.8f);
-        Destroy(Key);
     }
 
         IEnumerator TakeDamage()
