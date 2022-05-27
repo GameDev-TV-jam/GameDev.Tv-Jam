@@ -7664,7 +7664,7 @@ MonoBehaviour:
   keysToUnlockDoor: 5
   dashParticles: {fileID: 2010958615}
   dashTrail: {fileID: 2387373840196646360}
-  Key: {fileID: 8162442061140707334, guid: e5ffc08f8fe77fb44a3e17df93dee562, type: 3}
+  Key: {fileID: 582892669878412484, guid: 87f6f68eb7f0bed4e8c78b6e8228dde1, type: 3}
   player: {fileID: 88893233589110553}
   maxHealth: 3
   health: 3
