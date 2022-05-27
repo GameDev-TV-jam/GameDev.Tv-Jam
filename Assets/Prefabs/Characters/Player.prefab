@@ -4776,9 +4776,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -547965531
+  m_SortingLayer: 5
+  m_SortingOrder: 2
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -7664,6 +7664,7 @@ MonoBehaviour:
   keysToUnlockDoor: 5
   dashParticles: {fileID: 2010958615}
   dashTrail: {fileID: 2387373840196646360}
+  Key: {fileID: 8162442061140707334, guid: e5ffc08f8fe77fb44a3e17df93dee562, type: 3}
   player: {fileID: 88893233589110553}
   maxHealth: 3
   health: 3
