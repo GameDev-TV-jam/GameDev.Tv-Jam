@@ -302,6 +302,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (CrossPlatformInputManager.GetButtonDown("Fire1") && FireSpecial == true)
         {
+            StartCoroutine(ShootAnim());
             fireBallSpawnPoint = new Vector2(gameObject.transform.GetChild(0).transform.position.x, gameObject.transform.GetChild(0).transform.position.y);
             GameObject fireBallInstance = Instantiate(fireBall, fireBallSpawnPoint, Quaternion.identity);
 
@@ -320,6 +321,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    IEnumerator ShootAnim()
+    {
+        animator.SetBool("isShooting", true);
+        yield return new WaitForSeconds(.5f);
+        animator.SetBool("isShooting", false);
+    }
 
     IEnumerator Die()
     {
