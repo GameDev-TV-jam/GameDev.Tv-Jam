@@ -101,8 +101,11 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] TrailRenderer dashTrail;
 
+    [SerializeField] GameObject Key;
+
     public PlayerMovement player;
 
+    ParticleSystem keyParticles;
 
     public float maxHealth = 3;
     public float health = 3;
@@ -360,10 +363,14 @@ public class PlayerMovement : MonoBehaviour
 
         if(other.CompareTag("Collectibles"))
         {
+            Key = other.gameObject;
+            keyParticles = Key.transform.GetChild(1).GetComponent<ParticleSystem>();
+            keyParticles.Play();
             CollectiblesCount += 1;
             CollectiblesCollectedText.text = CollectiblesCount.ToString();
             PlayerPrefs.SetInt("Collected", CollectiblesCount);
-            Destroy(other.gameObject);
+
+            StartCoroutine(ByeByeKey(Key));
         }
 
         if(other.CompareTag("Exit"))
@@ -398,7 +405,13 @@ public class PlayerMovement : MonoBehaviour
         transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(false);
     }
 
-    IEnumerator TakeDamage()
+    IEnumerator ByeByeKey(GameObject Key)
+    {
+        yield return new WaitForSeconds(.25f);
+        Destroy(Key);
+    }
+
+        IEnumerator TakeDamage()
     {
         isTakingDamage = true;
         isKnockedBack = true;
