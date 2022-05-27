@@ -105,6 +105,9 @@ public class PlayerMovement : MonoBehaviour
 
     public PlayerMovement player;
 
+    [SerializeField] AudioSource fireBallSound;
+    [SerializeField] AudioSource hurtSound;
+    [SerializeField] AudioSource jumpSound;
 
     public float maxHealth = 3;
     public float health = 3;
@@ -312,6 +315,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(ShootAnim());
             fireBallSpawnPoint = new Vector2(gameObject.transform.GetChild(0).transform.position.x, gameObject.transform.GetChild(0).transform.position.y);
             GameObject fireBallInstance = Instantiate(fireBall, fireBallSpawnPoint, Quaternion.identity);
+            fireBallSound.Play();
 
             if(facingRight)
             {
@@ -422,6 +426,7 @@ public class PlayerMovement : MonoBehaviour
         isKnockedBack = true;
         playerRigidBody.velocity = Knockback;
         health -= 1;
+        hurtSound.Play();
 
         if(health != 0)
         {
@@ -469,12 +474,14 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRigidBody.velocity = playerJumpForce * Vector2.up;
             jumps--;
+            jumpSound.Play();
 
         }
 
         else if (Input.GetKeyUp(JumpKey) && jumps == 0 && playerBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             playerRigidBody.velocity = playerJumpForce * Vector2.up;
+            jumpSound.Play();
         }
     }
 
