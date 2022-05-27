@@ -81,7 +81,7 @@ public class Enemy : MonoBehaviour
         enemyDeathParticles.Play();
         myRigidBody.velocity = new Vector2(0f, 3.2f);
         animator.SetBool("isDead", true);
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
 }

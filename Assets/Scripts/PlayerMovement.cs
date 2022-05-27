@@ -178,7 +178,15 @@ public class PlayerMovement : MonoBehaviour
         PlayerPrefs.SetFloat("PositionY", lastYPosition);
         PlayerPrefs.SetInt("CurrentLevel", SceneManager.GetActiveScene().buildIndex);
 
-        SpecialNum = UnityEngine.Random.Range(0, 3);
+        SpecialNum = 0;
+
+        if (PlayerPrefs.HasKey("SpecialNum"))
+        {
+            if (PlayerPrefs.GetInt("SpecialNum") != 2)
+            {
+                SpecialNum = PlayerPrefs.GetInt("SpecialNum") + 1;
+            }
+        }
 
         if(SpecialNum == 0)
         {
@@ -344,6 +352,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerPrefs.SetFloat("PositionX", lastXPosition);
             PlayerPrefs.SetFloat("PositionY", lastYPosition);
             PlayerPrefs.SetInt("CurrentLevel", SceneManager.GetActiveScene().buildIndex);
+            PlayerPrefs.SetInt("SpecialNum", SpecialNum);
 
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             Instantiate(player, this.transform.position, player.transform.rotation);
@@ -414,7 +423,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator ByeByeKey(GameObject Key)
     {
-        yield return new WaitForSeconds(.25f);
+        yield return new WaitForSeconds(.8f);
         Destroy(Key);
     }
 
