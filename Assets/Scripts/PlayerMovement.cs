@@ -108,6 +108,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] AudioSource fireBallSound;
     [SerializeField] AudioSource hurtSound;
     [SerializeField] AudioSource jumpSound;
+    [SerializeField] AudioSource dashSound;
+    [SerializeField] AudioSource keySound;
 
     public float maxHealth = 3;
     public float health = 3;
@@ -384,6 +386,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(other.CompareTag("Collectibles"))
         {
+            keySound.Play();
             CollectiblesCount += 1;
             CollectiblesCollectedText.text = CollectiblesCount.ToString();
             PlayerPrefs.SetInt("Collected", CollectiblesCount);
@@ -513,6 +516,7 @@ public class PlayerMovement : MonoBehaviour
     
     IEnumerator Dash()
     {
+        dashSound.Play();
         isDashing = true;
         if(facingRight)
         {

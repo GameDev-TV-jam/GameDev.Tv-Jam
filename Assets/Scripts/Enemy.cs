@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 1f;
+    [SerializeField] AudioSource deathSound;
     Rigidbody2D myRigidBody;
     bool isAlive = true;
     public Animator animator;
@@ -79,6 +80,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator Die()
     {
+        deathSound.Play();
         myRigidBody.velocity = new Vector2(0f, 3.2f);
         animator.SetBool("isDead", true);
         yield return new WaitForSeconds(.5f);
