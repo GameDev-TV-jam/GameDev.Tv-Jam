@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] Text unlockDoorText;
 
-    [SerializeField] int keysToUnlockDoor = 5;
+    [SerializeField] int keysToUnlockDoor = 8;
 
     [SerializeField] ParticleSystem dashParticles;
 
