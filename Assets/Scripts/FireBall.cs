@@ -5,9 +5,11 @@ using UnityEngine;
 public class FireBall : MonoBehaviour
 {
     [SerializeField] float fireBallTimetoDestroy = 5f;
+    PlayerMovement player;
 
     void Start()
     {
+        player = FindObjectOfType<PlayerMovement>();
         StartCoroutine(DestroyFireball());
     }
 
@@ -16,6 +18,7 @@ public class FireBall : MonoBehaviour
     {
         if (gameObject.GetComponent<CircleCollider2D>().IsTouchingLayers(LayerMask.GetMask("Wall")))
         {
+            player.isFireballInScene = false;
             Destroy(gameObject);
         }
     }
@@ -23,6 +26,7 @@ public class FireBall : MonoBehaviour
     IEnumerator DestroyFireball()
     {
         yield return new WaitForSeconds(fireBallTimetoDestroy);
+        player.isFireballInScene = false;
         Destroy(gameObject);
     }
 }

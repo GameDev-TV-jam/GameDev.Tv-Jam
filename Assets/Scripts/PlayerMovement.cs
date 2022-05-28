@@ -117,6 +117,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool FireSpecial = false;
     bool DashSpecial = false;
+    public bool isFireballInScene = false;
 
     int SpecialNum;
     int CollectiblesCount = 0;
@@ -310,8 +311,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void ShootFireball()
     {
-        if (CrossPlatformInputManager.GetButtonDown("Fire1") && FireSpecial == true)
+        if (CrossPlatformInputManager.GetButtonDown("Fire1") && FireSpecial == true && isFireballInScene == false)
         {
+            isFireballInScene = true;
             StartCoroutine(ShootAnim());
             fireBallSpawnPoint = new Vector2(gameObject.transform.GetChild(0).transform.position.x, gameObject.transform.GetChild(0).transform.position.y);
             GameObject fireBallInstance = Instantiate(fireBall, fireBallSpawnPoint, Quaternion.identity);

@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     Rigidbody2D myRigidBody;
     bool isAlive = true;
     public Animator animator;
+    PlayerMovement player;
 
     float xStartPos;
     float currentPos;
@@ -17,6 +18,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = FindObjectOfType<PlayerMovement>();
         myRigidBody = GetComponent<Rigidbody2D>();
         xStartPos = transform.position.x;
     }
@@ -59,6 +61,7 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Fireball"))
         {
             isAlive = false;
+            player.isFireballInScene = false;
             Destroy(other.gameObject);
             StartCoroutine(Die());
         }
