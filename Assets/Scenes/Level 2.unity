@@ -3446,7 +3446,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6596845810917425707, guid: 0cc9f1ba006aeb045b6f12c6dc6674b3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.29
+      value: -14.25
       objectReference: {fileID: 0}
     - target: {fileID: 6596845810917425707, guid: 0cc9f1ba006aeb045b6f12c6dc6674b3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14266,6 +14266,10 @@ PrefabInstance:
     - target: {fileID: 88893233589110553, guid: 428676b9106ca254c9b037f81b6b3a76, type: 3}
       propertyPath: keysToUnlockDoor
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801708833198473569, guid: 428676b9106ca254c9b037f81b6b3a76, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2387373840196646360, guid: 428676b9106ca254c9b037f81b6b3a76, type: 3}
       propertyPath: m_Parameters.colorGradient.atime1
