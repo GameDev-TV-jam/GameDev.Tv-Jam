@@ -339,8 +339,9 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator ShootAnim()
     {
         animator.SetBool("isShooting", true);
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(1f);
         animator.SetBool("isShooting", false);
+        isFireballInScene = false;
     }
 
     IEnumerator Die()

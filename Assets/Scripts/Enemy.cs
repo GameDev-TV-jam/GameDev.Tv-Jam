@@ -62,7 +62,7 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Fireball"))
         {
             isAlive = false;
-            player.isFireballInScene = false;
+            //player.isFireballInScene = false;
             Destroy(other.gameObject);
             StartCoroutine(Die());
         }

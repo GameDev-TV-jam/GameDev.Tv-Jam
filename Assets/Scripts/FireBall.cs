@@ -18,7 +18,7 @@ public class FireBall : MonoBehaviour
     {
         if (gameObject.GetComponent<CircleCollider2D>().IsTouchingLayers(LayerMask.GetMask("Wall")))
         {
-            player.isFireballInScene = false;
+            //player.isFireballInScene = false;
             Destroy(gameObject);
         }
     }
@@ -26,7 +26,7 @@ public class FireBall : MonoBehaviour
     IEnumerator DestroyFireball()
     {
         yield return new WaitForSeconds(fireBallTimetoDestroy);
-        player.isFireballInScene = false;
+        //player.isFireballInScene = false;
         Destroy(gameObject);
     }
 }

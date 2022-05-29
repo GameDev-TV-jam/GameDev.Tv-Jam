@@ -56245,6 +56245,10 @@ PrefabInstance:
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5153360471562690466, guid: 428676b9106ca254c9b037f81b6b3a76, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5153360472391281969, guid: 428676b9106ca254c9b037f81b6b3a76, type: 3}
       propertyPath: m_Text
       value: Die
