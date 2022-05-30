@@ -3971,7 +3971,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Infinite Lives. 3 Special Abilities - But Only One Per Life. Push 'Escape'
+  m_Text: Infinite Lives. 3 Special Abilities - But Only One Per Life. Push 'Tab'
     While Playing To Pause For Controls and Details.
 --- !u!222 &1227147907
 CanvasRenderer:
