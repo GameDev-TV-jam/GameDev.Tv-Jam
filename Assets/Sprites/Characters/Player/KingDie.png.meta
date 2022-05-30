@@ -136,10 +136,10 @@ TextureImporter:
       name: KingDie_0
       rect:
         serializedVersion: 2
-        x: 30
+        x: 0
         y: 0
-        width: 20
-        height: 26
+        width: 52
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,10 +157,10 @@ TextureImporter:
       name: KingDie_1
       rect:
         serializedVersion: 2
-        x: 80
-        y: 1
-        width: 19
-        height: 27
+        x: 52
+        y: 0
+        width: 52
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,10 +178,10 @@ TextureImporter:
       name: KingDie_2
       rect:
         serializedVersion: 2
-        x: 130
-        y: 2
-        width: 19
-        height: 27
+        x: 104
+        y: 0
+        width: 52
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,10 +199,10 @@ TextureImporter:
       name: KingDie_3
       rect:
         serializedVersion: 2
-        x: 177
-        y: 1
-        width: 22
-        height: 26
+        x: 156
+        y: 0
+        width: 52
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -220,10 +220,10 @@ TextureImporter:
       name: KingDie_4
       rect:
         serializedVersion: 2
-        x: 219
+        x: 208
         y: 0
-        width: 28
-        height: 16
+        width: 52
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -241,10 +241,10 @@ TextureImporter:
       name: KingDie_5
       rect:
         serializedVersion: 2
-        x: 266
+        x: 260
         y: 0
-        width: 32
-        height: 24
+        width: 52
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -262,10 +262,10 @@ TextureImporter:
       name: KingDie_6
       rect:
         serializedVersion: 2
-        x: 316
+        x: 312
         y: 0
-        width: 34
-        height: 21
+        width: 52
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -283,10 +283,10 @@ TextureImporter:
       name: KingDie_7
       rect:
         serializedVersion: 2
-        x: 365
+        x: 364
         y: 0
-        width: 37
-        height: 18
+        width: 52
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -304,10 +304,10 @@ TextureImporter:
       name: KingDie_8
       rect:
         serializedVersion: 2
-        x: 417
+        x: 416
         y: 0
-        width: 37
-        height: 18
+        width: 52
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -325,10 +325,10 @@ TextureImporter:
       name: KingDie_9
       rect:
         serializedVersion: 2
-        x: 469
+        x: 468
         y: 0
-        width: 37
-        height: 18
+        width: 52
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
