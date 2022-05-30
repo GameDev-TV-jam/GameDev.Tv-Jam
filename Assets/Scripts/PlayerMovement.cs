@@ -484,7 +484,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        else if (Input.GetKeyUp(JumpKey) && jumps == 0 && playerBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        else if (Input.GetKeyDown(JumpKey) && jumps == 0 && playerBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             playerRigidBody.velocity = playerJumpForce * Vector2.up;
             jumpSound.Play();
