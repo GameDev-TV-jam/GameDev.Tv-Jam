@@ -445,7 +445,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ShootFireball()
     {
-        if (CrossPlatformInputManager.GetButtonDown("Fire1") && FireSpecial == true && isFireballInScene == false)
+        if (CrossPlatformInputManager.GetButtonDown("Fire2") && FireSpecial == true && isFireballInScene == false)
         {
             isFireballInScene = true;
             StartCoroutine(ShootAnim());

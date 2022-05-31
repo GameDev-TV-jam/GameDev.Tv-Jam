@@ -7252,7 +7252,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fireball - left ctrl - Kills Enemies
+  m_Text: Fireball - 'E' key - Kills Enemies
 --- !u!1 &6486142113417828705
 GameObject:
   m_ObjectHideFlags: 0
