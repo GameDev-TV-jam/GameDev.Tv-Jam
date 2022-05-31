@@ -9,7 +9,7 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerMovement : MonoBehaviour
 {
-    #region Private Variables
+    #region Variables/Declarations
 
     int jumps;
 
@@ -18,10 +18,6 @@ public class PlayerMovement : MonoBehaviour
     bool facingRight = true;
     //bool isGrounded;
     bool isDashing;
-
-    #endregion
-
-    #region Serialize and Public Variables
 
     [Header("Componenets")]
 
@@ -136,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
-    #region In-Built Functions
+    #region Awake/Start/Update
 
     private void OnDrawGizmos()
     {
@@ -276,10 +272,8 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
-    #region Player Attributes
+    #region Game Management
 
-    #region Movement Mechanics
-    
     private void Pause()
     {
         if (CrossPlatformInputManager.GetButtonDown("Cancel"))
@@ -311,38 +305,19 @@ public class PlayerMovement : MonoBehaviour
         PlayerPrefs.SetInt("Collected", CollectiblesCount);
     }
 
-    private void ShootFireball()
+    IEnumerator UnlockDoorMessage()
     {
-        if (CrossPlatformInputManager.GetButtonDown("Fire1") && FireSpecial == true && isFireballInScene == false)
-        {
-            isFireballInScene = true;
-            StartCoroutine(ShootAnim());
-            fireBallSpawnPoint = new Vector2(gameObject.transform.GetChild(0).transform.position.x, gameObject.transform.GetChild(0).transform.position.y);
-            GameObject fireBallInstance = Instantiate(fireBall, fireBallSpawnPoint, Quaternion.identity);
-            fireBallSound.Play();
+        transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(true);
+        unlockDoorText.text = "You need " + (keysToUnlockDoor - CollectiblesCount) + " more key(s) to unlock the door!";
 
-            if(facingRight)
-            {
-                fireBallInstance.GetComponent<Rigidbody2D>().velocity = fireBallVelocity;
-            }
-
-            if(!facingRight)
-            {
-                Vector3 scalar = fireBallInstance.transform.localScale;
-                scalar.x *= -1;
-                fireBallInstance.transform.localScale = scalar;
-                fireBallInstance.GetComponent<Rigidbody2D>().velocity = fireBallVelocity * -1;
-            }
-        }
-    }
-
-    IEnumerator ShootAnim()
-    {
-        animator.SetBool("isShooting", true);
         yield return new WaitForSeconds(1f);
-        animator.SetBool("isShooting", false);
-        isFireballInScene = false;
+        unlockDoorText.text = "";
+        transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(false);
     }
+
+    #endregion
+
+    #region Damage/Death/Collectibles/Level Exit
 
     IEnumerator Die()
     {
@@ -372,7 +347,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.CompareTag("Enemy") && isTakingDamage == false)
         {
-            if(other.gameObject.transform.position.x > this.transform.position.x)
+            if (other.gameObject.transform.position.x > this.transform.position.x)
             {
                 Knockback = new Vector2(-5f, 0f);
             }
@@ -385,7 +360,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(TakeDamage());
         }
 
-        if(other.CompareTag("Collectibles"))
+        if (other.CompareTag("Collectibles"))
         {
             keySound.Play();
             CollectiblesCount += 1;
@@ -394,7 +369,7 @@ public class PlayerMovement : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        if(other.CompareTag("Exit"))
+        if (other.CompareTag("Exit"))
         {
             if (CollectiblesCount >= keysToUnlockDoor)
             {
@@ -407,7 +382,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if(other.CompareTag("Barrier") && isDashing)
+        if (other.CompareTag("Barrier") && isDashing)
         {
             noise.m_AmplitudeGain = 5;
             noise.m_FrequencyGain = 5;
@@ -416,17 +391,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    IEnumerator UnlockDoorMessage()
-    {
-        transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(true);
-        unlockDoorText.text = "You need " + (keysToUnlockDoor - CollectiblesCount) + " more key(s) to unlock the door!";
-
-        yield return new WaitForSeconds(1f);
-        unlockDoorText.text = "";
-        transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(false);
-    }
-
-        IEnumerator TakeDamage()
+    IEnumerator TakeDamage()
     {
         isTakingDamage = true;
         isKnockedBack = true;
@@ -434,7 +399,7 @@ public class PlayerMovement : MonoBehaviour
         health -= 1;
         hurtSound.Play();
 
-        if(health != 0)
+        if (health != 0)
         {
             animator.SetTrigger("isHurting");
         }
@@ -449,6 +414,10 @@ public class PlayerMovement : MonoBehaviour
     {
         health = 0;
     }
+
+    #endregion
+
+    #region Movement Mechanics
 
     void PlayerMove()
     {
@@ -468,6 +437,43 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         
+    }
+
+    #endregion
+
+    #region Fireball Mechanics
+
+    private void ShootFireball()
+    {
+        if (CrossPlatformInputManager.GetButtonDown("Fire1") && FireSpecial == true && isFireballInScene == false)
+        {
+            isFireballInScene = true;
+            StartCoroutine(ShootAnim());
+            fireBallSpawnPoint = new Vector2(gameObject.transform.GetChild(0).transform.position.x, gameObject.transform.GetChild(0).transform.position.y);
+            GameObject fireBallInstance = Instantiate(fireBall, fireBallSpawnPoint, Quaternion.identity);
+            fireBallSound.Play();
+
+            if (facingRight)
+            {
+                fireBallInstance.GetComponent<Rigidbody2D>().velocity = fireBallVelocity;
+            }
+
+            if (!facingRight)
+            {
+                Vector3 scalar = fireBallInstance.transform.localScale;
+                scalar.x *= -1;
+                fireBallInstance.transform.localScale = scalar;
+                fireBallInstance.GetComponent<Rigidbody2D>().velocity = fireBallVelocity * -1;
+            }
+        }
+    }
+
+    IEnumerator ShootAnim()
+    {
+        animator.SetBool("isShooting", true);
+        yield return new WaitForSeconds(1f);
+        animator.SetBool("isShooting", false);
+        isFireballInScene = false;
     }
 
     #endregion
@@ -505,7 +511,7 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
-    #region Dash Mechanism
+    #region Dash Mechanics
 
     void DashMechanism()
     {
@@ -540,5 +546,4 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
-    #endregion
 }
