@@ -6006,8 +6006,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -57.588135, y: -22.982117}
-  m_SizeDelta: {x: 105.6581, y: 36.0356}
+  m_AnchoredPosition: {x: -65, y: -22.982117}
+  m_SizeDelta: {x: 125, y: 36.0356}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8426783118615202
 CanvasRenderer:
@@ -6607,8 +6607,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 53.417267, y: -20.035767}
-  m_SizeDelta: {x: 99.482, y: 30}
+  m_AnchoredPosition: {x: 65, y: -20.035767}
+  m_SizeDelta: {x: 120, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7506412808881383981
 CanvasRenderer:
@@ -6651,7 +6651,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Die
+  m_Text: Respawn
 --- !u!1 &4202831687694156424
 GameObject:
   m_ObjectHideFlags: 0
@@ -6687,7 +6687,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -7.1469, y: 97.999985}
-  m_SizeDelta: {x: 346.383, y: 65.3803}
+  m_SizeDelta: {x: 1000, y: 65.3803}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4830931342664717037
 CanvasRenderer:
@@ -6730,7 +6730,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Suicide - 'R' key OR Suicide Button
+  m_Text: Respawn on Spot - 'R' key OR 'Respawn' Button
 --- !u!1 &4332603177752087245
 GameObject:
   m_ObjectHideFlags: 0
