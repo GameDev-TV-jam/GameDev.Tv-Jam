@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireBall : MonoBehaviour
 {
-    [SerializeField] float fireBallTimetoDestroy = 5f;
+    [SerializeField] float fireBallTimetoDestroy = 3f;
     PlayerMovement player;
 
     void Start()

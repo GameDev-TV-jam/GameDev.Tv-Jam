@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     //bool isGrounded;
     bool isDashing;
 
-    [Header("Componenets")]
+    [Header("Components")]
 
     [SerializeField]
     Rigidbody2D playerRigidBody;
@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
     //[SerializeField] float deathFall = -40f; // how far the player falls below 0 on y-axis before dying
     [SerializeField] GameObject fireBall;
-    [SerializeField] Vector2 fireBallVelocity = new Vector2(1.5f, 0f);
+    [SerializeField] Vector2 fireBallVelocity = new Vector2(3f, 0f);
     [SerializeField] Text currentAbilityText;
     [SerializeField] Text CollectiblesCollectedText;
     [SerializeField] BoxCollider2D playerBoxCollider;

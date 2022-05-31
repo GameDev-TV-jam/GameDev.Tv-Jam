@@ -8273,7 +8273,7 @@ MonoBehaviour:
   healthBar: {fileID: 4119134257235207171}
   healthFill: {fileID: 4070666571389132711}
   fireBall: {fileID: 7889461919097777485, guid: ab8af4323adaad142abae01a06d48f93, type: 3}
-  fireBallVelocity: {x: 1.5, y: 0}
+  fireBallVelocity: {x: 3, y: 0}
   currentAbilityText: {fileID: 4074743201107670924}
   CollectiblesCollectedText: {fileID: 801549044739714129}
   playerBoxCollider: {fileID: 1414942098022260096}

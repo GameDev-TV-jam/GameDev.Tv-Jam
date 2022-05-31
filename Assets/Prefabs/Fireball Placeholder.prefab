@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25df8ef38e2134947a64e3c4ea1b44b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireBallTimetoDestroy: 5
+  fireBallTimetoDestroy: 3
 --- !u!95 &1041912923505471290
 Animator:
   serializedVersion: 3
